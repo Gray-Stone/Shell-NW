@@ -1,0 +1,41 @@
+
+
+# Recommanded command to run this: 
+# ansible-playbook self-install-playbook.yaml -i hosts.yaml
+# The user switching stuff is commented out, becuase we expects to 
+# run the file by user itself. 
+
+- name: Install ros specific zsh setup steps
+  hosts: localhost
+  # become: yes 
+  # become_method: sudo 
+  # become_user: "{{ dev_user }}"
+  vars:
+    - nw_shell_dir: "{{ playbook_dir }}"
+
+  tasks:
+
+    - name: Get the dev user home dir
+      # become: yes 
+      # become_user: "{{ dev_user }}"
+      shell: 
+        cmd: "echo $HOME"
+        # level: 2
+      changed_when: false
+      register: dev_home
+
+    - name: Insert a ansible managed zsh ros-specific to zshrc
+      # become: yes 
+      # become_user: root
+      blockinfile:
+        # owner: "{{ dev_user }}"
+        # group: "{{ dev_user }}"
+        path: "{{ dev_home.stdout }}/.zshrc" 
+        # mode: 0644
+        insertafter: "#### End of ansible block, add more after this ####"
+        marker_begin: "#### NW specific block Inserted by ansible ####"
+        marker_end: "#### End of NW specific ansible block ####"
+        block: |
+        
+          # Include the NW specific sourcing files
+          source "{{ nw_shell_dir }}/main-config.zsh"

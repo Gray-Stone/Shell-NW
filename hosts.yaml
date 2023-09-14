@@ -1,0 +1,6 @@
+devs:
+  hosts:
+    localhost
+
+  vars:
+    dev_user: leogray
