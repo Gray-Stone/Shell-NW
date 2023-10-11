@@ -23,7 +23,8 @@ function nw-cbuild()
 # https://github.com/ros2/ros2cli/issues/534#issuecomment-957926737
 
 
+# This two line matter for making auto complete work. But might need more stuff on a fresh new machine
 # echo "Regiested Ros2 colcon argcomplete"
-# eval "$(register-python-argcomplete3 ros2)"
-# eval "$(register-python-argcomplete3 colcon)"
+eval "$(register-python-argcomplete3 ros2)"
+eval "$(register-python-argcomplete3 colcon)"
 
