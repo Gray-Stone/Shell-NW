@@ -17,6 +17,11 @@ function nw-cbuild()
     (set -vx ; cd "${CURRENT_ROS_LOCAL_WORKSPACE}" && colcon build --symlink-install $@ )
 }
 
+function nw-clean()
+{
+    (set -vx ; cd "${CURRENT_ROS_LOCAL_WORKSPACE}" && colcon clean workspace $@ )
+}
+
 
 # argcomplete for ros2 & colcon
 # This link does the trick. I think it's the autoload doing the work 
