@@ -8,9 +8,14 @@ source_if_exists "/opt/ros/iron/setup.zsh" true
 # This is from previous interbotix stuff
 # source_if_exists "${HOME}/ws/interbotix/install/setup.zsh" true
 
-CURRENT_ROS_LOCAL_WORKSPACE="$(realpath ${HOME}/495-hw-workspace)"
+# CURRENT_ROS_LOCAL_WORKSPACE="$(realpath ${HOME}/495-hw-workspace)"
+CURRENT_ROS_LOCAL_WORKSPACE="$(realpath ${HOME}/495-project)"
 
 source_if_exists "${CURRENT_ROS_LOCAL_WORKSPACE}/install/setup.zsh" true
+
+source_if_exists "${HOME}/robots-ws/interbotix/install/setup.zsh" true
+source_if_exists "${HOME}/robots-ws/franka-ws/install/setup.zsh" true
+
 
 function nw-cbuild()
 {
@@ -21,6 +26,13 @@ function nw-clean()
 {
     (set -vx ; cd "${CURRENT_ROS_LOCAL_WORKSPACE}" && colcon clean workspace $@ )
 }
+
+function nw-ctest()
+{
+    (set -vx ; cd "${CURRENT_ROS_LOCAL_WORKSPACE}" && colcon test $@ )
+}
+
+COLCON_CONSOLE_ARGS="--event-handlers console_direct+"
 
 
 # argcomplete for ros2 & colcon
