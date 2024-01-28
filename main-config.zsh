@@ -16,7 +16,7 @@ source_if_exists "${CURRENT_ROS_WORKSPACE}/install/setup.zsh" true
 
 # source_if_exists "${HOME}/robots-ws/franka-ws/install/setup.zsh" true
 
-function swinter()
+function source_winter()
 {
 source_if_exists "${ALT_ROS_WORKSPACE}/install/setup.zsh" true
 source_if_exists "${HOME}/robots-ws/interbotix/install/setup.zsh" true
